@@ -32,8 +32,8 @@ def main(port: str = None, baudrate: int = 115200) -> None:
         while serial_port.isOpen():
             print(serial_port.readline().decode('utf-8'), end="")
             if time.time() - last_send_time > BATTERY_SEND_INTERVAL:
-                battery = psutil.sensors_battery()
-                msg = f"bat{chr(battery.percent)}\0".encode('utf-8')
+                battery = int(psutil.sensors_battery().percent)
+                msg = f"bat{chr(battery)}\0".encode('utf-8')
                 serial_port.write(msg)
                 last_send_time = time.time()
     except KeyboardInterrupt:  # Exit the program when Ctrl+C is pressed
