@@ -42,10 +42,10 @@ SubGHz_Phy/App/subghz_phy_app.o: ../SubGHz_Phy/App/subghz_phy_app.c \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h \
  ../Core/Inc/main.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_gpio.h \
- /Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_radio.h \
- /Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_errno.h \
- /Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_conf.h \
- /Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo.h \
+ /Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_radio.h \
+ /Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_errno.h \
+ /Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_conf.h \
+ /Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo.h \
  ../Core/Inc/sys_app.h ../Core/Inc/sys_conf.h \
  ../Utilities/trace/adv_trace/stm32_adv_trace.h \
  ../Core/Inc/utilities_conf.h ../Drivers/CMSIS/Include/cmsis_compiler.h \
@@ -101,10 +101,10 @@ SubGHz_Phy/App/subghz_phy_app.o: ../SubGHz_Phy/App/subghz_phy_app.c \
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_gpio.h:
-/Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_radio.h:
-/Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_errno.h:
-/Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_conf.h:
-/Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo.h:
+/Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_radio.h:
+/Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_errno.h:
+/Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo_conf.h:
+/Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/Drivers/stm32wlxx-nucleo-bsp/stm32wlxx_nucleo.h:
 ../Core/Inc/sys_app.h:
 ../Core/Inc/sys_conf.h:
 ../Utilities/trace/adv_trace/stm32_adv_trace.h:

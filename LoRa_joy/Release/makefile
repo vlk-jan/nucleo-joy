@@ -72,8 +72,8 @@ all: main-build
 main-build: LoRa_joy.elf secondary-outputs
 
 # Tool invocations
-LoRa_joy.elf LoRa_joy.map: $(OBJS) $(USER_OBJS) /Users/vlkjan/Documents/projekty/CVUT/Ing/2.\ Semestr/SPD/nucleo-joy/LoRa_joy/STM32WL55JCIX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "LoRa_joy.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/vlkjan/Documents/projekty/CVUT/Ing/2. Semestr/SPD/nucleo-joy/LoRa_joy/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LoRa_joy.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+LoRa_joy.elf LoRa_joy.map: $(OBJS) $(USER_OBJS) /Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/STM32WL55JCIX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "LoRa_joy.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/vlkjan/Documents/projekty/CVUT/Ing/2.Semestr/SPD/nucleo-joy/LoRa_joy/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LoRa_joy.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
