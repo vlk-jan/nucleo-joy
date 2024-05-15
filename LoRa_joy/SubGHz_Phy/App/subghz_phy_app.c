@@ -598,13 +598,13 @@ void GetControls(void)
   rh_joy = shift_and_scale(rh_joy_signed, RH_JOY_OFFSET);
   rv_joy = shift_and_scale(rv_joy_signed, RV_JOY_OFFSET);
 
-  l1_butt = HAL_GPIO_ReadPin(L_BUTT_Port, L1_BUTT_Pin);
-  l2_butt = HAL_GPIO_ReadPin(L_BUTT_Port, L2_BUTT_Pin);
-  l3_butt = HAL_GPIO_ReadPin(L_BUTT_Port, L3_BUTT_Pin);
+  l1_butt = 1-HAL_GPIO_ReadPin(L_BUTT_Port, L1_BUTT_Pin);
+  l2_butt = 1-HAL_GPIO_ReadPin(L_BUTT_Port, L2_BUTT_Pin);
+  l3_butt = 1-HAL_GPIO_ReadPin(L_BUTT_Port, L3_BUTT_Pin);
 
-  r1_butt = HAL_GPIO_ReadPin(R_BUTT_Port, R1_BUTT_Pin);
-  r2_butt = HAL_GPIO_ReadPin(R_BUTT_Port, R2_BUTT_Pin);
-  r3_butt = HAL_GPIO_ReadPin(R_BUTT_Port, R3_BUTT_Pin);
+  r1_butt = 1-HAL_GPIO_ReadPin(R_BUTT_Port, R1_BUTT_Pin);
+  r2_butt = 1-HAL_GPIO_ReadPin(R_BUTT_Port, R2_BUTT_Pin);
+  r3_butt = 1-HAL_GPIO_ReadPin(R_BUTT_Port, R3_BUTT_Pin);
   APP_LOG(TS_ON, VLEVEL_M, "ADC conversion done\n\r");
 }
 
