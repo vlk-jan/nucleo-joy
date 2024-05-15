@@ -23,6 +23,7 @@
 /* USER CODE BEGIN 0 */
 uint8_t huart2_rec_data[USART2_MSG_SIZE];
 uint8_t battery_state = 0;
+uint8_t temperature = 0;
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;

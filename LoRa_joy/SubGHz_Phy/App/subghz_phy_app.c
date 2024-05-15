@@ -362,7 +362,8 @@ static void OnRxError(void)
 /* USER CODE BEGIN PrFD */
 static void App_Process(void)
 {
-  Radio.Sleep();
+  //Radio.Sleep();
+  Radio.Standby();
 
   switch(State) {
     case RX:
@@ -370,7 +371,7 @@ static void App_Process(void)
         if (RxBufferSize > 0) {
           if (strncmp((const char*)BufferRx, SYNC_REQ, sizeof(SYNC_REQ) - 1) == 0) {
             APP_LOG(TS_ON, VLEVEL_M, "Received SYNC_REQ, sending SYNC_ACK\n\r");
-            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
           } else if (strncmp((const char*)BufferRx, SYNC_ACK, sizeof(SYNC_ACK) - 1) == 0) {
@@ -382,9 +383,9 @@ static void App_Process(void)
             if (Mode > 0 && Mode < 3) {
               UTIL_TIMER_Start(&timerSend);
             }
-            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             if (Mode == ROBOT){
-              HAL_Delay(200);
+              HAL_Delay(100);
             }
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
@@ -399,7 +400,7 @@ static void App_Process(void)
         } else if (rec_message.mode < 0 || rec_message.mode > 2) {
           if (strncmp((const char*)BufferRx, SYNC_REQ, sizeof(SYNC_REQ) - 1) == 0) {
             APP_LOG(TS_ON, VLEVEL_M, "Synced but received SYNC_REQ, sending SYNC_ACK\n\r");
-            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
           }
@@ -479,7 +480,7 @@ static void OnLedEvent(void *context)
 
 void OnSendEvent(void *context)
 {
-  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
 
   FillMessage();
   memcpy(BufferTx, &message, sizeof(Message_t));
@@ -490,7 +491,7 @@ void OnSendEvent(void *context)
 
 void OnEStopEvent(void *content)
 {
-  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
 
   ClearMessage(message);
   message.mode = Mode;
@@ -507,7 +508,7 @@ void OnEStopEvent(void *content)
 
 void SendAgain(void)
 {
-  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
   Radio.Send(BufferTx, PAYLOAD_LEN);
 }
 
@@ -546,7 +547,9 @@ void FillMessage(void)
       break;
     case ROBOT:
       message.data0 = battery_state;
+      message.data1 = temperature;
       APP_LOG(TS_ON, VLEVEL_M, "Current battery state: %d\n\r", battery_state);
+      APP_LOG(TS_ON, VLEVEL_M, "Current CPU temperature: %d\n\r", temperature);
       break;
     case UNDEFINED_MODE:
     default:

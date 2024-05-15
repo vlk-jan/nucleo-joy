@@ -44,11 +44,12 @@ void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-#define BAT_INFO_PREFIX "bat"
-#define BAT_INFO_LENGTH 3
-#define USART2_MSG_SIZE 5
+#define MEAS_INFO_PREFIX "meas"
+#define MEAS_INFO_LENGTH 4
+#define USART2_MSG_SIZE 7
 extern uint8_t huart2_rec_data[USART2_MSG_SIZE];
 extern uint8_t battery_state;
+extern uint8_t temperature;
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
