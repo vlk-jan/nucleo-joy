@@ -79,7 +79,7 @@ static RadioEvents_t RadioEvents;
 
 /* USER CODE BEGIN PV */
 static States_t State = RX;
-static Mode_t Mode = ROBOT;
+static Mode_t Mode = CONTROLLER;
 static Message_t message;
 static Message_t rec_message;
 static int8_t msg_uart1[6];
@@ -362,8 +362,8 @@ static void OnRxError(void)
 /* USER CODE BEGIN PrFD */
 static void App_Process(void)
 {
-  //Radio.Sleep();
-  Radio.Standby();
+  Radio.Sleep();
+  //Radio.Standby();
 
   switch(State) {
     case RX:
@@ -371,7 +371,7 @@ static void App_Process(void)
         if (RxBufferSize > 0) {
           if (strncmp((const char*)BufferRx, SYNC_REQ, sizeof(SYNC_REQ) - 1) == 0) {
             APP_LOG(TS_ON, VLEVEL_M, "Received SYNC_REQ, sending SYNC_ACK\n\r");
-            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
           } else if (strncmp((const char*)BufferRx, SYNC_ACK, sizeof(SYNC_ACK) - 1) == 0) {
@@ -383,7 +383,7 @@ static void App_Process(void)
             if (Mode > 0 && Mode < 3) {
               UTIL_TIMER_Start(&timerSend);
             }
-            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             if (Mode == ROBOT){
               HAL_Delay(100);
             }
@@ -400,7 +400,7 @@ static void App_Process(void)
         } else if (rec_message.mode < 0 || rec_message.mode > 2) {
           if (strncmp((const char*)BufferRx, SYNC_REQ, sizeof(SYNC_REQ) - 1) == 0) {
             APP_LOG(TS_ON, VLEVEL_M, "Synced but received SYNC_REQ, sending SYNC_ACK\n\r");
-            //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+            HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
           }
@@ -480,7 +480,7 @@ static void OnLedEvent(void *context)
 
 void OnSendEvent(void *context)
 {
-  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
 
   FillMessage();
   memcpy(BufferTx, &message, sizeof(Message_t));
