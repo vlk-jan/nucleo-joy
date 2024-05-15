@@ -27,13 +27,16 @@ def main(port: str = None, baudrate: int = 115200) -> None:
     serial_port = open_port_safe(port, baudrate)
 
     last_send_time = time.time()
+    temperature = 0
     # Main loop
     try:
         while serial_port.isOpen():
             print(serial_port.readline().decode('utf-8'), end="")
             if time.time() - last_send_time > BATTERY_SEND_INTERVAL:
                 battery = int(psutil.sensors_battery().percent)
-                msg = f"bat{chr(battery)}\0".encode('utf-8')
+                if sys.platform == 'linux':
+                    temperature = int(psutil.sensors_temperatures()['acpitz'][0][1])
+                msg = f"meas{chr(battery)}{chr(temperature)}\0".encode('utf-8')
                 serial_port.write(msg)
                 last_send_time = time.time()
     except KeyboardInterrupt:  # Exit the program when Ctrl+C is pressed
