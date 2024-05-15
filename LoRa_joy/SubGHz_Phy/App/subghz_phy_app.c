@@ -79,7 +79,7 @@ static RadioEvents_t RadioEvents;
 
 /* USER CODE BEGIN PV */
 static States_t State = RX;
-static Mode_t Mode = ROBOT;
+static Mode_t Mode = CONTROLLER;
 static Message_t message;
 static Message_t rec_message;
 static int8_t msg_uart1[6];
@@ -363,6 +363,7 @@ static void OnRxError(void)
 static void App_Process(void)
 {
   Radio.Sleep();
+  //Radio.Standby();
 
   switch(State) {
     case RX:
@@ -384,7 +385,7 @@ static void App_Process(void)
             }
             HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
             if (Mode == ROBOT){
-              HAL_Delay(200);
+              HAL_Delay(100);
             }
             memcpy(BufferTx, SYNC_ACK, sizeof(SYNC_ACK) - 1);
             Radio.Send(BufferTx, PAYLOAD_LEN);
@@ -490,7 +491,7 @@ void OnSendEvent(void *context)
 
 void OnEStopEvent(void *content)
 {
-  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
 
   ClearMessage(message);
   message.mode = Mode;
@@ -507,7 +508,7 @@ void OnEStopEvent(void *content)
 
 void SendAgain(void)
 {
-  HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
+  //HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN);
   Radio.Send(BufferTx, PAYLOAD_LEN);
 }
 
@@ -546,7 +547,9 @@ void FillMessage(void)
       break;
     case ROBOT:
       message.data0 = battery_state;
+      message.data1 = temperature;
       APP_LOG(TS_ON, VLEVEL_M, "Current battery state: %d\n\r", battery_state);
+      APP_LOG(TS_ON, VLEVEL_M, "Current CPU temperature: %d\n\r", temperature);
       break;
     case UNDEFINED_MODE:
     default:

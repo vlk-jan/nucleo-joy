@@ -1,3 +1,7 @@
 *pkl
 .idea
 .vscode
+Release/
+Debug/
+.DS_Store
+.settings/

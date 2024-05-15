@@ -239,10 +239,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   if (huart->Instance == USART2)
   {
     APP_LOG(TS_ON, VLEVEL_M, "USART2 message: %s\n\r", huart2_rec_data);
-    if (strncmp((const char*)huart2_rec_data, BAT_INFO_PREFIX, BAT_INFO_LENGTH) == 0) {
+    if (strncmp((const char*)huart2_rec_data, MEAS_INFO_PREFIX, MEAS_INFO_LENGTH) == 0) {
       HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-      battery_state = huart2_rec_data[3];
+      battery_state = huart2_rec_data[4];
+      temperature = huart2_rec_data[5];
       APP_LOG(TS_ON, VLEVEL_M, "Battery state: %d\n\r", battery_state);
+      APP_LOG(TS_ON, VLEVEL_M, "CPU temperature: %d\n\r", temperature);
     }
     HAL_UART_Receive_IT(huart, huart2_rec_data, USART2_MSG_SIZE);
   }
